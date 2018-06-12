@@ -51,20 +51,20 @@ void Vector::push_back (int element)
 
 
 void Vector::insert_at(int pos, int element) {
-	int * insert = new int[this->m_size];
-	int j = 0;
-	for (int i = 0; i <= this->m_size; ++i) {
-		if (i == pos) {
-			insert[pos] = element;
+	int* newarray = new int[m_size];
+	int current = 0;
+	for (int ix = 0; ix <= m_index; ++ix) {
+		if (ix == pos) {
+			newarray[pos] = element;
 			++m_index;
 		}
 		else{
-		insert[i] = this->m_arr[j];
-		j++;
+		newarray[ix] = m_arr[current];
+		current++;
 		}
 	}
-	for (int i = 0; i < this->m_size; ++i) {
-		this->m_arr[i] = insert[i];
+	for (int ix = 0; ix <= m_index; ++ix) {
+		m_arr[ix] = newarray[ix];
 	}
 	
 }
@@ -84,7 +84,7 @@ int Vector::get_at (int pos)
   return m_arr[pos];
 }
 
-int Vector::get_size() { return m_index; }
+int Vector::get_size() { return m_index + 1; }
 
 void Vector::showVector() const
 {
