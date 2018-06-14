@@ -20,19 +20,25 @@ Vector::~Vector ()
 
 Vector::Vector (const Vector & src)
 {
-  m_arr = src.m_arr;
   m_size = src.m_size;
   m_index = src.m_index;
+  m_arr = new int[m_size];
+	for(int ix = 0; ix <= m_index; ++ix) 
+   	m_arr[ix] = src.m_arr[ix];
 }
 
 Vector & Vector::operator= (const Vector & rhs)
 {
   if (this == &rhs)
     return *this;
-  m_arr = rhs.m_arr;
+   delete [] this -> m_arr;
   m_size = rhs.m_size;
   m_index = rhs.m_index;
-  return *this;
+  m_arr = new int[m_size];
+	for(int ix = 0; ix < m_size; ++ix) 
+   	m_arr[ix] = rhs.m_arr[ix];
+	return *this;
+   	
 }
 
 void Vector::push_back (int element)
